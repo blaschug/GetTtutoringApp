@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "448632593975",
+    "project_id": "gettutoring-743d2",
+    "storage_bucket": "gettutoring-743d2.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:448632593975:android:93b83ac8efd488dc7269b2",
+        "android_client_info": {
+          "package_name": "com.gettutoring"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "448632593975-i6usdhc103t7qqj0fl51ju9jovsd80qv.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.gettutoring",
+            "certificate_hash": "a934162ce668496c9ddf02a2a8211114b65196cd"
+          }
+        },
+        {
+          "client_id": "448632593975-15fod86p2ht014mvf9he3f7ljd2tplot.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDKzGgF2TVDKYbeevE9dp0YlMGtMxQf7dw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "448632593975-04c2q6k7276j1jmniid372eg7vngac5i.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

@@ -19,7 +19,7 @@ const styles = StyleSheet.create({
   body: {
     justifyContent: 'center',
     alignItems: 'center',
-    flex: 0.6,
+    flex: 0.7,
   },
   logo: {
     flex: 1,

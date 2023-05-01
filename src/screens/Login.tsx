@@ -1,24 +1,55 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {View, Image, Text, StyleSheet, TouchableOpacity} from 'react-native';
-import CustomInput from '../components/CustomInput';
+import AuthInput from '../components/AuthInput';
 import AuthHeader from '../components/AuthHeader';
+import {signInWithEmailAndPassword} from '../services/authService';
 
-function Login() {
+function Login({navigation}: any) {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const onEmailInputChange = (value: string) => {
+    setEmail(value);
+  };
+
+  const onPasswordInputChange = (value: string) => {
+    setPassword(value);
+  };
+
+  const onPressLogin = async () => {
+    await signInWithEmailAndPassword(email, password, setErrorMessage);
+    if (!errorMessage) {
+      navigation.navigate('Home');
+    }
+  };
+
   return (
     <View style={styles.body}>
       <AuthHeader />
-      <CustomInput placeholder="Email" />
-      <CustomInput placeholder="Password" isSecured={true} />
-      <TouchableOpacity style={styles.forgotPasswordButton}>
-        <View>
-          <Text style={styles.forgotPasswordText}>Forgot Password ?</Text>
-        </View>
-      </TouchableOpacity>
-      <TouchableOpacity activeOpacity={0.5} style={styles.loginButton}>
-        <View>
-          <Text style={styles.loginButtonText}>Login</Text>
-        </View>
-      </TouchableOpacity>
+      <View style={styles.loginFormView}>
+        <Text style={errorMessage ? {color: 'red'} : null}>{errorMessage}</Text>
+        <AuthInput placeholder="Email" onChangeText={onEmailInputChange} />
+        <AuthInput
+          placeholder="Password"
+          isSecured={true}
+          onChangeText={onPasswordInputChange}
+        />
+        <TouchableOpacity style={styles.forgotPasswordButton}>
+          <View>
+            <Text style={styles.forgotPasswordText}>Forgot Password ?</Text>
+          </View>
+        </TouchableOpacity>
+        <TouchableOpacity
+          activeOpacity={0.5}
+          style={styles.loginButton}
+          onPress={onPressLogin}>
+          <View>
+            <Text style={styles.loginButtonText}>Login</Text>
+          </View>
+        </TouchableOpacity>
+      </View>
+
       <View style={styles.separator}>
         <View style={styles.separatorLine} />
         <Text style={styles.separatorText}>Or login with</Text>
@@ -40,7 +71,12 @@ const styles = StyleSheet.create({
   body: {
     flex: 3,
     backgroundColor: '#F6F6F6',
-    justifyContent: 'center',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+    margin: 5,
+  },
+  loginFormView: {
+    width: '100%',
     alignItems: 'center',
   },
   forgotPasswordButton: {
@@ -69,8 +105,6 @@ const styles = StyleSheet.create({
   separator: {
     flexDirection: 'row',
     alignItems: 'center',
-    marginBottom: 20,
-    marginTop: 30,
   },
   separatorText: {
     color: 'black',
@@ -87,6 +121,7 @@ const styles = StyleSheet.create({
   socialButtonView: {
     flexDirection: 'row',
     alignItems: 'center',
+    marginBottom: 35,
   },
   socialButton: {
     marginHorizontal: 15,
