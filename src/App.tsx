@@ -6,8 +6,10 @@ import Login from './screens/Login';
 import Register from './screens/Register';
 import Welcome from './screens/Welcome';
 import Home from './screens/Home';
+import {Path} from './constants/navigation/navigation';
+import {RootStackParamList} from './models/screens';
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<RootStackParamList>();
 
 function App(): JSX.Element {
   return (
@@ -17,12 +19,12 @@ function App(): JSX.Element {
           headerTitle: () => null,
           headerTransparent: true,
         }}
-        initialRouteName="Welcome">
-        <Stack.Screen name="Welcome" component={Welcome} />
-        <Stack.Screen name="Login" component={Login} />
-        <Stack.Screen name="Register" component={Register} />
+        initialRouteName={Path.Welcome}>
+        <Stack.Screen name={Path.Welcome} component={Welcome} />
+        <Stack.Screen name={Path.Login} component={Login} />
+        <Stack.Screen name={Path.Register} component={Register} />
         <Stack.Screen
-          name="Home"
+          name={Path.Home}
           component={Home}
           options={{
             header: () => null,

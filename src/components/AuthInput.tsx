@@ -1,14 +1,14 @@
 import React, {useState} from 'react';
 import {StyleSheet, TextInput} from 'react-native';
 
-interface CustomInputProps {
+interface AuthInputProps {
   placeholder: string;
   value?: string;
   isSecured?: boolean;
   onChangeText: (text: string) => void;
 }
 
-function AuthInput(props: CustomInputProps) {
+function AuthInput(props: AuthInputProps) {
   const [isFocused, setIsFocused] = useState(false);
 
   const handleOnFocus = () => {

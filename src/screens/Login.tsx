@@ -3,8 +3,15 @@ import {View, Image, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import AuthInput from '../components/AuthInput';
 import AuthHeader from '../components/AuthHeader';
 import {signInWithEmailAndPassword} from '../services/authService';
+import Separator from '../components/Separator';
+import AuthButton from '../components/AuthButton';
+import {StackScreenProps} from '@react-navigation/stack';
+import {Path} from '../constants/navigation/navigation';
+import {RootStackParamList} from '../models/screens';
 
-function Login({navigation}: any) {
+type LoginProps = StackScreenProps<RootStackParamList, Path.Login>;
+
+function Login({navigation}: LoginProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [errorMessage, setErrorMessage] = useState('');
@@ -20,7 +27,7 @@ function Login({navigation}: any) {
   const onPressLogin = async () => {
     await signInWithEmailAndPassword(email, password, setErrorMessage);
     if (!errorMessage) {
-      navigation.navigate('Home');
+      navigation.navigate(Path.Home);
     }
   };
 
@@ -40,21 +47,9 @@ function Login({navigation}: any) {
             <Text style={styles.forgotPasswordText}>Forgot Password ?</Text>
           </View>
         </TouchableOpacity>
-        <TouchableOpacity
-          activeOpacity={0.5}
-          style={styles.loginButton}
-          onPress={onPressLogin}>
-          <View>
-            <Text style={styles.loginButtonText}>Login</Text>
-          </View>
-        </TouchableOpacity>
+        <AuthButton message="Login" onPress={onPressLogin} />
       </View>
-
-      <View style={styles.separator}>
-        <View style={styles.separatorLine} />
-        <Text style={styles.separatorText}>Or login with</Text>
-        <View style={styles.separatorLine} />
-      </View>
+      <Separator message="Or login with" />
       <View style={styles.socialButtonView}>
         <TouchableOpacity style={styles.socialButton}>
           <Image
@@ -89,34 +84,6 @@ const styles = StyleSheet.create({
   forgotPasswordText: {
     color: '#7DAAF6',
     fontSize: 10,
-  },
-  loginButton: {
-    width: '75%',
-    backgroundColor: '#190152',
-    borderRadius: 10,
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  loginButtonText: {
-    color: 'white',
-    fontSize: 20,
-  },
-  separator: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  separatorText: {
-    color: 'black',
-    marginHorizontal: 20,
-    fontSize: 15,
-    opacity: 0.6,
-  },
-  separatorLine: {
-    height: 1,
-    flex: 0.35,
-    backgroundColor: 'black',
-    opacity: 0.2,
   },
   socialButtonView: {
     flexDirection: 'row',

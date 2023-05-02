@@ -1,6 +1,7 @@
 import React from 'react';
-import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {StyleSheet, Text, View} from 'react-native';
 import AuthHeader from '../components/AuthHeader';
+import AuthButton from '../components/AuthButton';
 
 function Welcome({navigation}: any) {
   const onPressLogin = () => {
@@ -21,22 +22,8 @@ function Welcome({navigation}: any) {
         </Text>
       </View>
       <View style={styles.buttonsView}>
-        <TouchableOpacity
-          activeOpacity={0.5}
-          style={styles.button}
-          onPress={onPressRegister}>
-          <View>
-            <Text style={styles.buttonText}>Register</Text>
-          </View>
-        </TouchableOpacity>
-        <TouchableOpacity
-          activeOpacity={0.5}
-          style={styles.button}
-          onPress={onPressLogin}>
-          <View>
-            <Text style={styles.buttonText}>Login</Text>
-          </View>
-        </TouchableOpacity>
+        <AuthButton message="Register" onPress={onPressRegister} />
+        <AuthButton message="Login" onPress={onPressLogin} />
       </View>
     </View>
   );
@@ -64,18 +51,6 @@ const styles = StyleSheet.create({
     flex: 0.3,
     justifyContent: 'space-between',
     alignItems: 'center',
-  },
-  button: {
-    width: '75%',
-    backgroundColor: '#190152',
-    borderRadius: 10,
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  buttonText: {
-    color: 'white',
-    fontSize: 20,
   },
 });
 

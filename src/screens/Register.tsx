@@ -3,8 +3,15 @@ import {View, Image, Text, StyleSheet, TouchableOpacity} from 'react-native';
 import AuthInput from '../components/AuthInput';
 import AuthHeader from '../components/AuthHeader';
 import {registerWithEmailAndPassword} from '../services/authService';
+import Separator from '../components/Separator';
+import AuthButton from '../components/AuthButton';
+import {StackScreenProps} from '@react-navigation/stack';
+import {Path} from '../constants/navigation/navigation';
+import {RootStackParamList} from '../models/screens';
 
-function Register({navigation}: any) {
+type RegisterProps = StackScreenProps<RootStackParamList, Path.Register>;
+
+function Register({navigation}: RegisterProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [repeatedPassword, setRepeatedPassword] = useState('');
@@ -51,20 +58,9 @@ function Register({navigation}: any) {
           isSecured={true}
           onChangeText={onRepeatedPasswordInputChange}
         />
-        <TouchableOpacity
-          activeOpacity={0.5}
-          style={styles.registerButton}
-          onPress={onPressRegister}>
-          <View>
-            <Text style={styles.registerButtonText}>Register</Text>
-          </View>
-        </TouchableOpacity>
+        <AuthButton message="Register" onPress={onPressRegister} />
       </View>
-      <View style={styles.separator}>
-        <View style={styles.separatorLine} />
-        <Text style={styles.separatorText}>Or register with</Text>
-        <View style={styles.separatorLine} />
-      </View>
+      <Separator message="Or register with" />
       <View style={styles.socialButtonView}>
         <TouchableOpacity style={styles.socialButton}>
           <Image
@@ -94,34 +90,6 @@ const styles = StyleSheet.create({
     height: 50,
     justifyContent: 'flex-start',
     alignItems: 'center',
-  },
-  registerButton: {
-    width: '75%',
-    backgroundColor: '#190152',
-    borderRadius: 10,
-    height: 50,
-    justifyContent: 'center',
-    alignItems: 'center',
-  },
-  registerButtonText: {
-    color: 'white',
-    fontSize: 20,
-  },
-  separator: {
-    flexDirection: 'row',
-    alignItems: 'center',
-  },
-  separatorText: {
-    color: 'black',
-    marginHorizontal: 20,
-    fontSize: 15,
-    opacity: 0.6,
-  },
-  separatorLine: {
-    height: 1,
-    flex: 0.35,
-    backgroundColor: 'black',
-    opacity: 0.2,
   },
   socialButtonView: {
     flexDirection: 'row',
