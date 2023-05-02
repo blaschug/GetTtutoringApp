@@ -8,17 +8,13 @@ import Welcome from './screens/Welcome';
 import Home from './screens/Home';
 import {Path} from './constants/navigation/navigation';
 import {RootStackParamList} from './models/screens';
-
 const Stack = createStackNavigator<RootStackParamList>();
 
 function App(): JSX.Element {
   return (
     <NavigationContainer>
       <Stack.Navigator
-        screenOptions={{
-          headerTitle: () => null,
-          headerTransparent: true,
-        }}
+        screenOptions={screensOptions.generic}
         initialRouteName={Path.Welcome}>
         <Stack.Screen name={Path.Welcome} component={Welcome} />
         <Stack.Screen name={Path.Login} component={Login} />
@@ -26,13 +22,21 @@ function App(): JSX.Element {
         <Stack.Screen
           name={Path.Home}
           component={Home}
-          options={{
-            header: () => null,
-          }}
+          options={screensOptions.home}
         />
       </Stack.Navigator>
     </NavigationContainer>
   );
 }
+
+const screensOptions = {
+  generic: {
+    headerTitle: () => null,
+    headerTransparent: true,
+  },
+  home: {
+    header: () => null,
+  },
+};
 
 export default App;

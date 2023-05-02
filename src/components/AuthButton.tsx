@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, TouchableOpacity, View} from 'react-native';
+import {colors, fonts, radius} from '../constants/styles/styles';
 
 interface AuthButtonProps {
   message: string;
@@ -22,15 +23,15 @@ function AuthButton(props: AuthButtonProps) {
 const styles = StyleSheet.create({
   registerButton: {
     width: '75%',
-    backgroundColor: '#190152',
-    borderRadius: 10,
+    backgroundColor: colors.intenseBlue,
+    borderRadius: radius.common,
     height: 50,
     justifyContent: 'center',
     alignItems: 'center',
   },
   registerButtonText: {
-    color: 'white',
-    fontSize: 20,
+    color: colors.white,
+    fontSize: fonts.size.l,
   },
 });
 

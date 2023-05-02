@@ -2,6 +2,7 @@ import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import AuthHeader from '../components/AuthHeader';
 import AuthButton from '../components/AuthButton';
+import {colors, fonts} from '../constants/styles/styles';
 
 function Welcome({navigation}: any) {
   const onPressLogin = () => {
@@ -43,9 +44,9 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   text: {
-    fontSize: 20,
-    color: 'black',
-    fontFamily: 'JetBrainsMono-Regular',
+    fontSize: fonts.size.l,
+    color: colors.black,
+    fontFamily: fonts.style.jetBrainsMono,
   },
   buttonsView: {
     flex: 0.3,

@@ -8,6 +8,8 @@ import AuthButton from '../components/AuthButton';
 import {StackScreenProps} from '@react-navigation/stack';
 import {Path} from '../constants/navigation/navigation';
 import {RootStackParamList} from '../models/screens';
+import {authStyles} from '../constants/styles/genericSheets';
+import {colors, fonts, radius} from '../constants/styles/styles';
 
 type LoginProps = StackScreenProps<RootStackParamList, Path.Login>;
 
@@ -34,8 +36,10 @@ function Login({navigation}: LoginProps) {
   return (
     <View style={styles.body}>
       <AuthHeader />
-      <View style={styles.loginFormView}>
-        <Text style={errorMessage ? {color: 'red'} : null}>{errorMessage}</Text>
+      <View style={styles.formView}>
+        <Text style={errorMessage ? {color: colors.red} : null}>
+          {errorMessage}
+        </Text>
         <AuthInput placeholder="Email" onChangeText={onEmailInputChange} />
         <AuthInput
           placeholder="Password"
@@ -63,39 +67,17 @@ function Login({navigation}: LoginProps) {
 }
 
 const styles = StyleSheet.create({
-  body: {
-    flex: 3,
-    backgroundColor: '#F6F6F6',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-    margin: 5,
-  },
-  loginFormView: {
-    width: '100%',
-    alignItems: 'center',
-  },
+  ...authStyles,
   forgotPasswordButton: {
     width: '75%',
-    borderRadius: 10,
+    borderRadius: radius.common,
     height: 50,
     justifyContent: 'flex-start',
     alignItems: 'flex-end',
   },
   forgotPasswordText: {
-    color: '#7DAAF6',
-    fontSize: 10,
-  },
-  socialButtonView: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 35,
-  },
-  socialButton: {
-    marginHorizontal: 15,
-  },
-  socialImage: {
-    height: 70,
-    width: 70,
+    color: colors.lightBlue,
+    fontSize: fonts.size.s,
   },
 });
 

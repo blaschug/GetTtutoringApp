@@ -8,6 +8,8 @@ import AuthButton from '../components/AuthButton';
 import {StackScreenProps} from '@react-navigation/stack';
 import {Path} from '../constants/navigation/navigation';
 import {RootStackParamList} from '../models/screens';
+import {authStyles} from '../constants/styles/genericSheets';
+import {colors} from '../constants/styles/styles';
 
 type RegisterProps = StackScreenProps<RootStackParamList, Path.Register>;
 
@@ -45,8 +47,10 @@ function Register({navigation}: RegisterProps) {
   return (
     <View style={styles.body}>
       <AuthHeader />
-      <View style={styles.registerFormView}>
-        <Text style={errorMessage ? {color: 'red'} : {}}>{errorMessage}</Text>
+      <View style={styles.formView}>
+        <Text style={errorMessage ? {color: colors.red} : {}}>
+          {errorMessage}
+        </Text>
         <AuthInput placeholder="Email" onChangeText={onEmailInputChange} />
         <AuthInput
           placeholder="Password"
@@ -74,35 +78,7 @@ function Register({navigation}: RegisterProps) {
 }
 
 const styles = StyleSheet.create({
-  body: {
-    flex: 1,
-    backgroundColor: '#F6F6F6',
-    justifyContent: 'space-evenly',
-    alignItems: 'center',
-  },
-  registerFormView: {
-    width: '100%',
-    alignItems: 'center',
-  },
-  errorMessage: {
-    width: '75%',
-    borderRadius: 10,
-    height: 50,
-    justifyContent: 'flex-start',
-    alignItems: 'center',
-  },
-  socialButtonView: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 35,
-  },
-  socialButton: {
-    marginHorizontal: 15,
-  },
-  socialImage: {
-    height: 70,
-    width: 70,
-  },
+  ...authStyles,
 });
 
 export default Register;

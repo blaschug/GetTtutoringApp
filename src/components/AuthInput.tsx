@@ -1,5 +1,6 @@
 import React, {useState} from 'react';
 import {StyleSheet, TextInput} from 'react-native';
+import {colors, radius} from '../constants/styles/styles';
 
 interface AuthInputProps {
   placeholder: string;
@@ -23,8 +24,11 @@ function AuthInput(props: AuthInputProps) {
     <TextInput
       secureTextEntry={props.isSecured}
       placeholder={props.placeholder}
-      placeholderTextColor={'gray'}
-      style={[{borderColor: isFocused ? '#000000' : '#F6F6F6'}, styles.input]}
+      placeholderTextColor={colors.grayCommon}
+      style={[
+        {borderColor: isFocused ? colors.black : colors.grayBackground},
+        styles.input,
+      ]}
       onFocus={handleOnFocus}
       onBlur={handleOnBlur}
       value={props.value}
@@ -37,10 +41,10 @@ function AuthInput(props: AuthInputProps) {
 const styles = StyleSheet.create({
   input: {
     width: '75%',
-    backgroundColor: 'white',
-    color: 'black',
+    backgroundColor: colors.white,
+    color: colors.black,
     borderWidth: 1,
-    borderRadius: 10,
+    borderRadius: radius.common,
     marginBottom: 10,
     textAlign: 'center',
   },

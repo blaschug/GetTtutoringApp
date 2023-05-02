@@ -1,5 +1,6 @@
 import React from 'react';
 import {Image, StyleSheet, Text, View} from 'react-native';
+import {colors, fonts} from '../constants/styles/styles';
 
 function AuthHeader() {
   return (
@@ -25,9 +26,9 @@ const styles = StyleSheet.create({
     flex: 1,
   },
   titleText: {
-    fontSize: 40,
-    color: 'black',
-    fontFamily: 'JetBrainsMono-Regular',
+    fontSize: fonts.size.xl,
+    color: colors.black,
+    fontFamily: fonts.style.jetBrainsMono,
     marginBottom: 30,
   },
 });

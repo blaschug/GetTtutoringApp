@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
+import {colors, fonts} from '../constants/styles/styles';
 
 interface SeparatorProps {
   message: string;
@@ -21,15 +22,15 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   separatorText: {
-    color: 'black',
+    color: colors.black,
     marginHorizontal: 20,
-    fontSize: 15,
+    fontSize: fonts.size.m,
     opacity: 0.6,
   },
   separatorLine: {
     height: 1,
     flex: 0.35,
-    backgroundColor: 'black',
+    backgroundColor: colors.black,
     opacity: 0.2,
   },
 });
