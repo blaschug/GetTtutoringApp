@@ -16,7 +16,6 @@ type LoginProps = StackScreenProps<RootStackParamList, Path.Login>;
 function Login({navigation}: LoginProps) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
-  const [errorMessage, setErrorMessage] = useState('');
 
   const onEmailInputChange = (value: string) => {
     setEmail(value);
@@ -27,8 +26,9 @@ function Login({navigation}: LoginProps) {
   };
 
   const onPressLogin = async () => {
-    await signInWithEmailAndPassword(email, password, setErrorMessage);
-    if (!errorMessage) {
+    const loginResult = await signInWithEmailAndPassword(email, password);
+
+    if (loginResult) {
       navigation.navigate(Path.Home);
     }
   };
@@ -37,9 +37,6 @@ function Login({navigation}: LoginProps) {
     <View style={styles.body}>
       <AuthHeader />
       <View style={styles.formView}>
-        <Text style={errorMessage ? {color: colors.red} : null}>
-          {errorMessage}
-        </Text>
         <AuthInput placeholder="Email" onChangeText={onEmailInputChange} />
         <AuthInput
           placeholder="Password"

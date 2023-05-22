@@ -1,27 +1,41 @@
-import React from 'react';
+import React, {Suspense, useEffect} from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import AuthHeader from '../components/AuthHeader';
 import AuthButton from '../components/AuthButton';
 import {colors, fonts} from '../constants/styles/styles';
+import {Path} from '../constants/navigation/navigation';
+import {StackScreenProps} from '@react-navigation/stack';
+import {RootStackParamList} from '../models/screens';
+import {getCurrentUser} from '../services/authService';
 
-function Welcome({navigation}: any) {
+type WelcomeProps = StackScreenProps<RootStackParamList, Path.Welcome>;
+
+function Welcome({navigation}: WelcomeProps) {
+  const user = getCurrentUser();
+
+  useEffect(() => {
+    if (user) {
+      navigation.navigate(Path.Home);
+    }
+  });
+
   const onPressLogin = () => {
-    navigation.navigate('Login');
+    navigation.navigate(Path.Login);
   };
 
   const onPressRegister = () => {
-    navigation.navigate('Register');
+    navigation.navigate(Path.Register);
   };
 
   return (
     <View style={styles.body}>
       <AuthHeader />
-      <View style={styles.spaceBetweenLogoAndButtons}>
-        <Text style={styles.text}>
-          {/* Ver que hacer aca */}
-          Le meto info de algo aca?
-        </Text>
-      </View>
+      <Suspense fallback={<>loading...</>}>
+        <View style={styles.spaceBetweenLogoAndButtons}>
+          <Text style={styles.text}>Le meto info de algo aca?</Text>
+        </View>
+      </Suspense>
+
       <View style={styles.buttonsView}>
         <AuthButton message="Register" onPress={onPressRegister} />
         <AuthButton message="Login" onPress={onPressLogin} />
